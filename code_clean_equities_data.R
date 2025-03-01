@@ -33,6 +33,15 @@ print(str(us_equities))
 # Save cleaned data
 write.csv(us_equities, "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_CRSP_Annual_Equities_Cleaned/us_equities_cleaned.csv")
 
+
+
+###########################
+###########################
+#### Check data ###########
+###########################
+###########################
+
+
 # Check date range
 date_range <- range(us_equities$date, na.rm = TRUE)
 print(paste("Date Range:", date_range[1], "to", date_range[2]))
