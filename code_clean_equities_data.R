@@ -1,9 +1,8 @@
 
-library(dplyr)
-
-
+##############################################################################
 # Here, let us first load in the equities data for pre-processing and cleaning.
 # I reference an external drive as the file is too large to keep on github. 
+##############################################################################
 
 
 # Load required libraries
@@ -17,34 +16,40 @@ library(ggplot2)    # For visualization
 file_path <- "D:/Bayesian_State_State_Data/Equitites/us_equities_data_2000_2024.csv"
 
 # Load data
-df <- read_csv(file_path)
+us_equities <- read_csv(file_path)
+
+us_equities <- us_equities %>%
+  rename(share_code = SHRCD, permanent_company_number = PERMCO, exchange_code = EXCHCD, primary_exchange = PRIMEXCH, company_name = COMNAM, price = PRC, bid_low_price = BIDLO, bid = BID, ask = ASK, volume = VOL, ticker= TICKER, returns = RET, spread = SPREAD,  returns_sans_dividends = RETX, shares_outstanding = SHROUT, shrenddt = SHRENDDT, value_weighted_return = vwretd, value_weighted_return_sans_dividend = vwretx, equal_weighted_return = ewretd, delisting_return = DLRET, declaration_date = DCLRDT, record_date = RCRDDT, cusip = CUSIP, share_class = SHRCLS, market_maker_count = MMCNT, return_on_sp_composite_index = sprtrn, ask_high_price = ASKHI, dividend_cash_amount = DIVAMT, factor_to_adjust_price = FACPR, cumulative_factor_to_adjust_price = CFACPR)
 
 # Convert date to Date format
-df <- df %>% mutate(date = as.Date(date))
+us_equities <- us_equities %>% mutate(date = as.Date(date))
 
 # Display first few rows
-print(head(df))
+print(head(us_equities))
 
 # Check structure of dataset
-print(str(df))
+print(str(us_equities))
+
+# Save cleaned data
+write.csv(us_equities, "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_CRSP_Annual_Equities_Cleaned/us_equities_cleaned.csv")
 
 # Check date range
-date_range <- range(df$date, na.rm = TRUE)
+date_range <- range(us_equities$date, na.rm = TRUE)
 print(paste("Date Range:", date_range[1], "to", date_range[2]))
 
 # Check granularity (Daily vs. Monthly)
-granularity <- df %>% arrange(date) %>% mutate(date_diff = date - lag(date)) %>% count(date_diff)
+granularity <- us_equities %>% arrange(date) %>% mutate(date_diff = date - lag(date)) %>% count(date_diff)
 print(granularity)
 
 # Summary statistics
-print(summary(df))
+print(summary(us_equities))
 
 # Number of unique tickers
-num_tickers <- df %>% distinct(TICKER  ) %>% nrow()
+num_tickers <- us_equities %>% distinct(ticker  ) %>% nrow()
 print(paste("Unique Tickers:", num_tickers))
 
 # Most frequent tickers
-top_tickers <- df %>% count(TICKER  , sort = TRUE) %>% head(10)
+top_tickers <- us_equities %>% count(ticker  , sort = TRUE) %>% head(10)
 print(top_tickers)
 
 # Check for missing values
@@ -53,9 +58,9 @@ print(missing_values)
 
 # Plot stock price trend for a sample stock (AAPL)
 sample_ticker <- "AAPL"
-df_sample <- df %>% filter(TICKER   == sample_ticker)
+df_sample <- us_equities %>% filter(ticker   == sample_ticker)
 
-ggplot(df_sample, aes(x = date, y = PRC)) +
+ggplot(df_sample, aes(x = date, y = price)) +
   geom_line(color = "blue") +
   labs(title = paste("Stock Price of", sample_ticker), x = "Date", y = "Price") +
   theme_minimal()
