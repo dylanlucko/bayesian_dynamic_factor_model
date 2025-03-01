@@ -1,0 +1,1 @@
+The US Equities data is too large to upload to GitHub, please extract from ZIP folder. 
