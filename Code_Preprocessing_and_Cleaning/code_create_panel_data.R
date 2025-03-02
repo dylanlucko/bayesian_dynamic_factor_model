@@ -39,8 +39,36 @@ final_dataset <- equities_data %>%
   inner_join(fama_french_data, by = "date") %>%
   inner_join(fred_data, by = "date")
 
-# Save merged dataset
-write_csv(final_dataset, "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Merged_Data/final_dataset.csv")
+
+# Define base directory
+base_path <- "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/"
+
+# Create "Data_Panel" directory if it does not exist
+data_panel_path <- file.path(base_path, "Data_Panel")
+if (!dir.exists(data_panel_path)) {
+  dir.create(data_panel_path)
+  print(paste("Created directory:", data_panel_path))
+} else {
+  print(paste("Directory already exists:", data_panel_path))
+}
+
+# Define the output file path
+output_file <- file.path(data_panel_path, "final_dataset.csv")
+
+# Save the merged dataset
+write_csv(final_dataset, output_file)
+
+# Print confirmation message
+print(paste("Final dataset saved to:", output_file))
+
+# Define ZIP file path
+zip_file_path <- file.path(base_path, "Data_Panel.zip")
+
+# Compress the Data_Panel folder into a ZIP file
+zip(zipfile = zip_file_path, files = list.files(data_panel_path, full.names = TRUE))
+
+# Print compression confirmation
+print(paste("Data_Panel folder compressed into:", zip_file_path))
 
 # Clean up extracted ZIP files
 unlink(temp_dir, recursive = TRUE)
