@@ -32,3 +32,5 @@ fama_french_data <- fama_french_data %>%
 
 # Check the first few rows to confirm the transformation
 head(fama_french_data)
+
+write.csv(fama_french_data, "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_CRSP_Fama_French_Factors_Cleaned/fama_french_5_factor_w_momentum_cleaned.csv")
