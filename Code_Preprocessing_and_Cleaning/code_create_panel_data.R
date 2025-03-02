@@ -1,7 +1,7 @@
 library(dplyr)
 library(readr)
 library(lubridate)
-
+library(dplyr)
 # Define file paths
 path_fred <- "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_FRED_Cleaned"
 path_fama_french <- "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_CRSP_Fama_French_Factors_Cleaned"
