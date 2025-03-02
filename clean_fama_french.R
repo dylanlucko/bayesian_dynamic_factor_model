@@ -16,8 +16,19 @@ fama_french_data <- read_csv(file_path)
 
 # Rename 'dateff' to 'date' and convert to Date format
 fama_french_data <- fama_french_data %>%
-  rename(date = dateff) %>%
-  mutate(date = ymd(date))  # Convert to Date format assuming YYYYMMDD format
+  rename(dateff = dateff) %>%
+  mutate(date = ymd(dateff))  # Convert to Date format assuming YYYYMMDD format
 
 # View the first few rows
+head(fama_french_data)
+
+
+library(dplyr)
+library(lubridate)
+
+# Assuming fama_french_5_factor_w_momentum has a column called 'dateff' with month-end dates
+fama_french_data <- fama_french_data %>%
+  mutate(date = floor_date(dateff, "month"))  # Convert to first day of the month
+
+# Check the first few rows to confirm the transformation
 head(fama_french_data)
