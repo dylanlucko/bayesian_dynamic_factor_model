@@ -30,6 +30,10 @@ print(head(us_equities))
 # Check structure of dataset
 print(str(us_equities))
 
+us_equities <- us_equities %>%
+  mutate(date = floor_date(date, "month"))  # Convert to first day of the month
+
+head(us_equities)
 # Save cleaned data
 write.csv(us_equities, "C:/Users/dlucko/Documents/GitHub/bayesian_dynamic_factor_model-/Data_CRSP_Annual_Equities_Cleaned/us_equities_cleaned.csv")
 
