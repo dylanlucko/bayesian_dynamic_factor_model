@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------
 library(bsts)
 library(dplyr)
-
+final_df <- final_dataset
 # Suppose final_df is already merged:
 # final_df = crsp_equities_df %>%
 #   inner_join(factors_macro, by = "date")
