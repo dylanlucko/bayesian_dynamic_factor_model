@@ -143,20 +143,32 @@ model {
 }
 "
 
-# -----------------------------
-# 3. Compile and Fit the Stan Model
-# -----------------------------
+# Check for missing values in the returns matrix
+na_count <- sum(is.na(returns_matrix))
+message("Number of NAs in returns_matrix: ", na_count)
+
+# Option 1: Remove stocks (rows) with any NA values
+returns_matrix_clean <- returns_matrix[complete.cases(returns_matrix), ]
+message("Number of stocks before cleaning: ", nrow(returns_matrix))
+message("Number of stocks after cleaning: ", nrow(returns_matrix_clean))
+
+# Adjust N accordingly
+N_clean <- nrow(returns_matrix_clean)
+
+# If factor_returns and macro_vars are already cleaned, we don't need to modify them.
+# Now, use returns_matrix_clean in the Stan data:
 fit <- stan(model_code = stan_code,
-            data = list(N = N,
+            data = list(N = N_clean,
                         T = T,
                         K = K,
                         M = M,
                         F = factor_returns,   # T x K matrix of factor returns
                         X = macro_vars,       # T x M matrix of macro variables
-                        y = returns_matrix),  # N x T matrix of excess returns
+                        y = returns_matrix_clean),  # N_clean x T matrix of excess returns
             iter = 2000,
             chains = 4,
             seed = 123)
 
-# Print summary of results
+
+
 print(fit)
