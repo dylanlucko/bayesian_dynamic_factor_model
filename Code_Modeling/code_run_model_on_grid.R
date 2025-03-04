@@ -20,3 +20,5 @@ panel_subset <- read.csv(files[1])
 
 # 6. Verify the data
 head(panel_subset)
+
+panel_data <- panel_subset
