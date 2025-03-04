@@ -11,7 +11,7 @@ options(mc.cores = parallel::detectCores())
 # Assume your original long-format data frame is named panel_data and has the columns:
 # "PERMNO", "date", "returns", "rf", "mktrf", "smb", "hml", "rmw", "cma", "umd",
 # "effective_federal_funds_rate", "inflation_expectation", "pcepi", etc.
-
+gc()
 panel_data <- read.csv("D:/Bayesian_State_State_Data/Data_Panel/panel_data.csv")
 
 # Subset only the necessary columns.
