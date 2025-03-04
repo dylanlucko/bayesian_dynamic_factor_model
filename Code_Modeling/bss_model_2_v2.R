@@ -4,6 +4,7 @@ library(tidyr)
 library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
+pkgbuild::has_build_tools(debug = TRUE)
 
 # -----------------------------
 # 1. Prepare the Data
@@ -13,12 +14,12 @@ options(mc.cores = parallel::detectCores())
 # "effective_federal_funds_rate", "inflation_expectation", "pcepi", etc.
 gc()
 panel_data <- read.csv("D:/Bayesian_State_State_Data/Data_Panel/panel_data.csv")
-
+gc()
 # Subset only the necessary columns.
 panel_subset <- panel_data %>%
   select(PERMNO, date, returns, rf, mktrf, smb, hml, rmw, cma, umd,
          effective_federal_funds_rate, inflation_expectation, pcepi)
-
+rm(panel_data)
 # Convert date column to Date format and clean returns.
 panel_subset <- panel_subset %>%
   mutate(date = as.Date(date)) %>%
