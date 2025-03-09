@@ -1,4 +1,12 @@
+########################################
+########################################
+########################################
+
 #### This Analysis Uses a LSF Cluster for Computations ####
+
+########################################
+########################################
+########################################
 
 To run the simulations, you must follow these steps:
 
@@ -46,3 +54,7 @@ To run the simulations, you must follow these steps:
 
 1. To stop a job that you began, use the command 'bkill <jobid> (Bash Kill)
 2. To check the status of all running jobs, use the command bjobs (Bash Jobs)
+
+########################################
+########################################
+########################################
