@@ -1,11 +1,9 @@
 #!/bin/bash
 #BSUB -q long                     # Submit to the "long" queue
-#BSUB -n 10                       # Request 12 CPU cores
-#BSUB -R "rusage[mem=104800]"     # Request 204800 MB (approx. 200 GB) of memory per core
-#BSUB -M 104800                   # Set the memory limit to 204800 MB per process
-#BSUB -u dlucko@hbs.edu                               # Email address for notifications
-#BSUB -B                                             # Send email when job begins
-#BSUB -N    
+#BSUB -n 12                       # Request 12 CPU cores
+#BSUB -R "rusage[mem=204800]"     # Request 204800 MB (approx. 200 GB) of memory per core
+#BSUB -M 204800                   # Set the memory limit to 204800 MB per process
+
 #BSUB -o /export/home/dor/dlucko/Downloads/job_output_%J.log  # Standard output file
 #BSUB -e /export/home/dor/dlucko/Downloads/job_error_%J.log   # Standard error file
 
