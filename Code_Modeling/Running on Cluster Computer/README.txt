@@ -2,14 +2,19 @@
 
 To run the simulations, you must follow these steps:
 
-1. On the compute cluster of your choosing (modify code if not LSF), ensure the 'analysis.R' and 'submit_job.sh' files are located in the same folder.
-2. Also ensure the panel dataset is downloaded on to the compute cluster, this file is meant to work with a ZIP folder.
+1. On the compute cluster of your choosing (modify code if not LSF), ensure the 'analysis.R' and 'submit_job.sh' 
+   files are located in the same folder.
+1.1. You can either copy the submit_job.sh file directly, or copy its content using the 
+     'bash_running_on_cluster_compute.txt' file. 
+2. Also, ensure the panel dataset is downloaded on to the compute cluster, this file is meant to work with a ZIP folder. 
+   I keep it in 'Downloads' for ease. 
 3. The analysis script will unzip the panel data folder, ensure no NAs are present, then run the MCMC simulations. 
 
 # Running the job in BASH
 
 1. Follow the steps above to ensure the file structure is correct. 
-2. Open the Terminal and set your CD as the folder where the 'analysis.R' and 'submit_job.sh' live. In this case, I choose the Downloads folder.
+2. Open the Terminal and set your CD as the folder where the 'analysis.R' and 'submit_job.sh' live. In this case, 
+   I choose the Downloads folder for ease.
 	cd /export/home/dor/dlucko/Downloads
 3. Make each of the files executable:
 	chmod +x analysis.R
