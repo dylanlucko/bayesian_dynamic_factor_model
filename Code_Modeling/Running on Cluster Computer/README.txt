@@ -35,3 +35,9 @@ To run the simulations, you must follow these steps:
 4. -o ==> Add an output file 
 5. -e ==> Add an error file
 6. module load R ==> if R is not loaded on your compute cluster
+
+
+# Final Notes
+
+1. To stop a job that you began, use the command 'bkill <jobid> (Bash Kill)
+2. To check the status of all running jobs, use the command bjobs (Bash Jobs)
