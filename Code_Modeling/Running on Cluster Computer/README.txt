@@ -1,3 +1,5 @@
+#### This Analysis Uses a LSF Cluster for Computations ####
+
 To run the simulations, you must follow these steps:
 
 1. On the compute cluster of your choosing, ensure the 'analysis.R' and 'submit_job.sh' files are located in the same folder.
