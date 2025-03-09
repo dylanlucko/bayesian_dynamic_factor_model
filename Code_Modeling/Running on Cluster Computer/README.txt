@@ -2,7 +2,7 @@
 
 To run the simulations, you must follow these steps:
 
-1. On the compute cluster of your choosing, ensure the 'analysis.R' and 'submit_job.sh' files are located in the same folder.
+1. On the compute cluster of your choosing (modify code if not LSF), ensure the 'analysis.R' and 'submit_job.sh' files are located in the same folder.
 2. Also ensure the panel dataset is downloaded on to the compute cluster, this file is meant to work with a ZIP folder.
 3. The analysis script will unzip the panel data folder, ensure no NAs are present, then run the MCMC simulations. 
 
